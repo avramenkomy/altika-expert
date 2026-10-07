@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+backend/.venv/
+.venv/
+
+# Environment
+.env
+.env.*
+
+# Django
+*.sqlite3
+media/
+staticfiles/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Frontend
+node_modules/
+dist/

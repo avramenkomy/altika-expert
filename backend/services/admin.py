@@ -1,3 +1,26 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Service
+
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'price_from',
+        'order',
+        'is_active',
+        'updated_at',
+    )
+
+    list_editable = (
+        'price_from',
+        'order',
+        'is_active',
+    )
+
+    list_filter = ( 'is_active', )
+    search_fields = ( 'title', )
+
+    prepopulated_fields = {
+        'slug': ( 'title', )
+    }

@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-from .models import Company, Expertise, ValuationType
+from .models import (
+    Company,
+    CompanyDocument,
+    Expertise,
+    ProcessStep,
+    SiteSettings,
+    UseCase,
+    ValuationType,
+)
 
 
 @admin.register(Company)
@@ -84,3 +92,59 @@ class ValuationTypeAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ( 'title', )
     }
+
+
+@admin.register(ProcessStep)
+class ProcessStepAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'process_type',
+        'order',
+        'is_active',
+    )
+    list_editable = (
+        'order',
+        'is_active',
+    )
+    list_filter = (
+        'process_type',
+        'is_active',
+    )
+
+    search_fields = ( 'title', )
+
+
+@admin.register(UseCase)
+class UseCaseAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'case_type',
+        'order',
+        'is_active',
+    )
+    list_editable = (
+        'order',
+        'is_active',
+    )
+    list_filter = (
+        'case_type',
+        'is_active',
+    )
+
+    search_fields = ( 'title', )
+
+
+@admin.register(CompanyDocument)
+class CompanyDocumentAdmin(admin.ModelAdmin):
+    list_display = ( 'title', 'order', 'is_active', )
+    list_editable = ( 'order', 'is_active', )
+    list_filter = ( 'is_active', )
+    search_fields = ( 'title', )
+
+
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        if SiteSettings.objects.exists():
+            return False
+        return super().has_add_permission(request)

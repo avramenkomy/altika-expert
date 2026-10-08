@@ -186,3 +186,127 @@ class ValuationType(models.Model):
     def __str__(self):
         return self.title
 
+
+# Модель для раздела сайта "Этапы проведения экспертизы"
+class ProcessStep(models.Model):
+    class ProcessType(models.TextChoices):
+        EXPERTISE = 'expertise', 'Судебная экспертиза'
+        VALUATION = 'valuation', 'Оценочные услуги'
+
+    process_type = models.CharField(
+        'Процесс',
+        max_length=20,
+        choices=ProcessType.choices
+    )
+
+    title = models.CharField('Наименование этапа', max_length=255)
+
+    description = models.TextField(
+        'Описание этапа',
+        blank=True,
+    )
+
+    order = models.PositiveBigIntegerField(
+        'Порядок отображения',
+        default=0
+    )
+
+    is_active = models.BooleanField(
+        'Отображать на сайте',
+        default=True
+    )
+
+    class Meta:
+        verbose_name = 'Этапы работы'
+        verbose_name_plural = 'Этапы работы'
+        ordering = ( 'process_type', 'order', )
+
+    def __str__(self):
+        return self.title
+
+
+# Модель для раздела сайта "Судебная экспертиза и оценка необходима в следующих ситуациях"
+class UseCase(models.Model):
+    class CaseType(models.TextChoices):
+        EXPERTISE = 'expertise', 'Экспертиза'
+        VALUATION = 'valuation', 'Оценка'
+        BOTH = 'both', 'Экспертиза и оценка'
+
+    case_type = models.CharField(
+        'Направление',
+        max_length=20,
+        choices=CaseType.choices,
+        default=CaseType.BOTH,
+    )
+
+    title = models.CharField('Наименование', max_length=255)
+
+    description = models.TextField('Описание', blank=True)
+
+    order = models.PositiveBigIntegerField(
+        'Порядок отображения',
+        default=0
+    )
+
+    is_active = models.BooleanField(
+        'Отображать на сайте',
+        default=True,
+    )
+
+    class Meta:
+        verbose_name = 'Случай обращения'
+        verbose_name_plural = 'Когда необходима экспертиза или оценка'
+        ordering = ('order', 'title')
+
+    def __str__(self):
+        return self.title
+
+
+# Модель для раздела сайта "документы компании"
+class CompanyDocument(models.Model):
+    title = models.CharField('Наименование документа', max_length=255)
+    description = models.TextField('Описание документа', blank=True)
+    image = models.ImageField(
+        'Изображение документа',
+        upload_to='company/documents/',
+        blank=True,
+        null=True,
+    )
+
+    file = models.FileField(
+        'Файл',
+        upload_to='company/documents/files',
+        blank=True,
+        null=True,
+    )
+
+    order = models.PositiveBigIntegerField(
+        'Порядок отображения',
+        default=0
+    )
+
+    is_active = models.BooleanField(
+        'Отображать на сайте',
+        default=True,
+    )
+
+    class Meta:
+        verbose_name = 'Документ компании'
+        verbose_name_plural = 'Документы компании'
+        ordering = ('order', 'title')
+
+    def __str__(self):
+        return self.title
+
+class SiteSettings(models.Model):
+    show_documents_page = models.BooleanField(
+        'Показывать раздел документов',
+        default=True,
+    )
+
+    class Meta:
+        verbose_name = 'Настройки сайта'
+        verbose_name_plural = 'Настройки сайта'
+
+    def __str__(self):
+        return 'Настройки сайта'

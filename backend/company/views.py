@@ -1,8 +1,22 @@
 from rest_framework import generics
 
-from .models import Company, Expertise, ValuationType
+from .models import (
+    Company,
+    Expertise,
+    ValuationType,
+    ProcessStep,
+    UseCase,
+    CompanyDocument,
+    SiteSettings,
+)
 from .serializers import (
-  CompanySerializer, ExpertiseSerializer, ValuationTypeSerializer
+  CompanySerializer,
+  ExpertiseSerializer,
+  ValuationTypeSerializer,
+  ProcessStepSerializer,
+  UseCaseSerializer,
+  CompanyDocumentSerializer,
+  SiteSettingsSerializer,
 )
 
 
@@ -42,3 +56,34 @@ class ValuationTypeDetailView(generics.RetrieveAPIView):
 
     def get_queryset(self):
         return ValuationType.objects.filter(is_active=True)
+
+
+class ProcessStepListView(generics.ListAPIView):
+    serializer_class = ProcessStepSerializer
+
+    def get_queryset(self):
+        return ProcessStep.objects.filter(
+            process_type=self.kwargs['process_type'],
+            is_active=True,
+        )
+
+
+class UseCaseListView(generics.ListAPIView):
+    serializer_class = UseCaseSerializer
+
+    def get_queryset(self):
+        return UseCase.objects.filter(is_active=True)
+
+
+class CompanyDocumentListView(generics.ListAPIView):
+    serializer_class = CompanyDocumentSerializer
+
+    def get_queryset(self):
+        return CompanyDocument.objects.filter(is_active=True)
+
+
+class SiteSettingsDetailView(generics.RetrieveAPIView):
+    serializer_class = SiteSettingsSerializer
+
+    def get_object(self):
+        return SiteSettings.objects.first()

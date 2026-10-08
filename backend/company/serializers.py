@@ -1,5 +1,13 @@
 from rest_framework import serializers
-from .models import Company, Expertise, ValuationType
+from .models import (
+    Company,
+    Expertise,
+    ValuationType,
+    ProcessStep,
+    CompanyDocument,
+    SiteSettings,
+    UseCase,
+)
 
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -53,3 +61,33 @@ class ValuationTypeSerializer(serializers.ModelSerializer):
             'seo_title',
             'seo_description',
         )
+
+
+class ProcessStepSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProcessStep
+        fields = (
+            'id', 'process_type', 'title', 'description',
+        )
+
+
+class UseCaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UseCase
+        fields = (
+            'id', 'case_type', 'title', 'description',
+        )
+
+
+class CompanyDocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyDocument
+        fields = (
+            'id', 'title', 'description', 'image', 'file',
+        )
+
+
+class SiteSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SiteSettings
+        fields = ( 'show_documents_page', )

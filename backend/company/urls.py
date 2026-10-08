@@ -4,6 +4,8 @@ from .views import (
   CompanyDetailView,
   ExpertiseListView, ExpertiseDetailView,
   ValuationTypeListView, ValuationTypeDetailView,
+  ProcessStepListView, UseCaseListView, CompanyDocumentListView,
+  SiteSettingsDetailView,
 )
 
 
@@ -23,4 +25,24 @@ urlpatterns = [
         ValuationTypeDetailView.as_view(),
         name='valuation-detail'
     ),
+    path(
+      'processes/<str:process_type>/',
+      ProcessStepListView.as_view(),
+      name='process-step-list'
+    ),
+    path(
+      'use-cases/',
+      UseCaseListView.as_view(),
+      name='use-case-list'
+    ),
+    path(
+      'documents/',
+      CompanyDocumentListView.as_view(),
+      name='company-document-list',
+    ),
+    path(
+      'settings/',
+      SiteSettingsDetailView.as_view(),
+      name='site-settings',
+    )
 ]

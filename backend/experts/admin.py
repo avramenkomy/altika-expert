@@ -40,12 +40,12 @@ class ExpertAdmin(admin.ModelAdmin):
         'updated_at',
     )
     list_editable = ( 'order', 'is_active', )
-    list_filter = ( 'is_active', 'positions', 'spezializations', )
+    list_filter = ( 'is_active', 'positions', 'specializations', )
     search_fields = ( 'last_name', 'first_name', 'middle_name', )
     prepopulated_fields = {
         'slug': ( 'last_name', 'first_name', ),
     }
-    filter_horizontal = ( 'positions', 'spezializations', )
+    filter_horizontal = ( 'positions', 'specializations', )
     inlines = (ExpertDocumentInline, )
 
     @admin.display(description='Должности')

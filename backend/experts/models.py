@@ -51,7 +51,7 @@ class Expert(models.Model):
         blank=True,
     )
 
-    spezializations = models.ManyToManyField(
+    specializations = models.ManyToManyField(
         Specialization,
         verbose_name='Специализации',
         related_name='experts',

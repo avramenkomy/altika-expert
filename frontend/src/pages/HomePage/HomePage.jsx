@@ -4,18 +4,21 @@ import {
   getCompany,
   getCompanyAdvantages,
   getExpertises,
+  getValuationTypes,
   getSiteSettings
 } from '../../api';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Hero from '../../sections/Hero/Hero';
 import About from '../../sections/About/About';
 import Expertises from '../../sections/Expertises/Expertises';
+import Valuation from '../../sections/Valuation/Valuation';
 
 
 function HomePage() {
   const [company, setCompany] = useState(null);
   const [advantages, setAdvantages] = useState([]);
   const [expertises, setExpertises] = useState([]);
+  const [valuationTypes, setValuationTypes] = useState([]);
 
   const [settings, setSettings] = useState(null);
   const [error, setError] = useState('');
@@ -28,17 +31,20 @@ function HomePage() {
           settingsData,
           advantagesData,
           expertisesData,
+          valuationTypesData,
         ] = await Promise.all([
           getCompany(),
           getSiteSettings(),
           getCompanyAdvantages(),
           getExpertises(),
+          getValuationTypes(),
         ]);
 
         setCompany(companyData);
         setAdvantages(advantagesData);
         setSettings(settingsData);
         setExpertises(expertisesData);
+        setValuationTypes(valuationTypesData);
       } catch (error) {
         console.error('Не удалось загрузить данные сайта.', error);
         setError('Не удалось загрузить данные сайта.');
@@ -64,7 +70,8 @@ function HomePage() {
 
       <Expertises expertises={expertises} />
 
-      <section id="valuation" />
+      <Valuation valuationTypes={valuationTypes} />
+      
       <section id="services" />
       <section id="experts" />
       <section id="contacts" />

@@ -89,7 +89,7 @@ class Expertise(models.Model):
 
     image = models.ImageField(
         'Изображение',
-        upload_to='valuation/',
+        upload_to='expertises/',
         blank=True,
         null=True
     )
@@ -149,7 +149,7 @@ class ValuationType(models.Model):
 
     image = models.ImageField(
         'Изображение',
-        upload_to='expertises/',
+        upload_to='valuation/',
         blank=True,
         null=True
     )

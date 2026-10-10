@@ -12,6 +12,7 @@ export const RESPONSE_STATUSES = {
 // api endpoints
 export const API_ENDPOINTS = {
   COMPANY: 'company/',
+  COMPANY_ADVANTAGES: 'company/advantages/',
   SITE_SETTINGS: 'company/settings/',
   APPLICATIONS: 'applications/'
 }

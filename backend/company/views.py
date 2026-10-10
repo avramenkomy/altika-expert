@@ -2,6 +2,7 @@ from rest_framework import generics
 
 from .models import (
     Company,
+    CompanyAdvantage,
     Expertise,
     ValuationType,
     ProcessStep,
@@ -11,6 +12,7 @@ from .models import (
 )
 from .serializers import (
   CompanySerializer,
+  CompanyAdvantageSerializer,
   ExpertiseSerializer,
   ValuationTypeSerializer,
   ProcessStepSerializer,
@@ -26,6 +28,13 @@ class CompanyDetailView(generics.RetrieveAPIView):
 
     def get_object(self):
         return Company.objects.first()
+
+
+class CompanyAdvantageListView(generics.ListAPIView):
+    serializer_class = CompanyAdvantageSerializer
+
+    def get_queryset(self):
+        return CompanyAdvantage.objects.filter(is_active=True)
 
 
 class ExpertiseListView(generics.ListAPIView):

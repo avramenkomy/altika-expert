@@ -341,3 +341,19 @@ class SiteSettings(models.Model):
 
     def __str__(self):
         return 'Настройки сайта'
+
+
+# Модель для раздела сайта "О компании"
+class CompanyAdvantage(models.Model):
+    title = models.CharField('Название', max_length=150)
+    description = models.TextField('Описание', blank=True)
+    order = models.PositiveBigIntegerField('Порядок отображения', default=0)
+    is_active = models.BooleanField('Отображать на сайте', default=True)
+
+    class Meta:
+        verbose_name = 'Преимущество компании'
+        verbose_name_plural = 'Преимущества компании'
+        ordering = ( 'order', 'title', )
+
+    def __str__(self):
+        return self.title

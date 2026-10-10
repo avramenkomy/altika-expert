@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (
-  CompanyDetailView,
+  CompanyDetailView, CompanyAdvantageListView,
   ExpertiseListView, ExpertiseDetailView,
   ValuationTypeListView, ValuationTypeDetailView,
   ProcessStepListView, UseCaseListView, CompanyDocumentListView,
@@ -11,6 +11,11 @@ from .views import (
 
 urlpatterns = [
     path('', CompanyDetailView.as_view(), name='company-detail'),
+    path(
+        'advantages/',
+        CompanyAdvantageListView.as_view(),
+        name='company-advantage-list'
+    ),
 
     path('expertises/', ExpertiseListView.as_view(), name='expertise-list'),
     path(

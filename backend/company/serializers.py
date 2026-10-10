@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import (
     Company,
+    CompanyAdvantage,
     Expertise,
     ValuationType,
     ProcessStep,
@@ -32,6 +33,12 @@ class CompanySerializer(serializers.ModelSerializer):
             'latitude',
             'longitude',
         )
+
+
+class CompanyAdvantageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyAdvantage
+        fields = ( 'id', 'title', 'description', )
 
 
 class ExpertiseSerializer(serializers.ModelSerializer):

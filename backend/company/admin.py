@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import (
     Company,
     CompanyDocument,
+    CompanyAdvantage,
     Expertise,
     ProcessStep,
     SiteSettings,
@@ -150,3 +151,11 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         if SiteSettings.objects.exists():
             return False
         return super().has_add_permission(request)
+
+
+@admin.register(CompanyAdvantage)
+class CompanyAdvantageAdmin(admin.ModelAdmin):
+    list_display = ( 'title', 'order', 'is_active', )
+    list_editable = ( 'order', 'is_active', )
+    search_fields = ( 'title', )
+    list_filter = ( 'is_active', )

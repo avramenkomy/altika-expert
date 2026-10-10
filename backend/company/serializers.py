@@ -21,7 +21,9 @@ class CompanySerializer(serializers.ModelSerializer):
             'inn',
             'kpp',
             'ogrn',
+            'logo',
             'phone',
+            'phone_secondary',
             'email',
             'telegram',
             'whatsapp',
@@ -90,4 +92,9 @@ class CompanyDocumentSerializer(serializers.ModelSerializer):
 class SiteSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteSettings
-        fields = ( 'show_documents_page', )
+        fields = (
+            'show_documents_page',
+            'hero_title',
+            'hero_subtitle',
+            'hero_image',
+        )

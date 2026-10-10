@@ -14,7 +14,19 @@ class Company(models.Model):
     kpp = models.CharField('КПП', max_length=9, blank=True)
     ogrn = models.CharField('ОГРН', max_length=15, blank=True)
 
+    logo = models.ImageField(
+        'Логотип',
+        upload_to='company/logo',
+        blank=True,
+        null=True,
+    )
+
     phone = models.CharField('Телефон', max_length=50, blank=True)
+    phone_secondary = models.CharField(
+        'Дополнительный телефон',
+        max_length=50,
+        blank=True
+    )
     email = models.EmailField('Email', blank=True)
 
     telegram = models.URLField('Telegram', blank=True)
@@ -302,6 +314,25 @@ class SiteSettings(models.Model):
     show_documents_page = models.BooleanField(
         'Показывать раздел документов',
         default=True,
+    )
+
+    hero_title = models.CharField(
+        'Заголовок первого экрана',
+        max_length=500,
+        blank=True,
+    )
+
+    hero_subtitle = models.CharField(
+        'Подзаголовок первого экрана',
+        max_length=500,
+        blank=True,
+    )
+
+    hero_image = models.ImageField(
+        'Фоновое изображение первого экрана',
+        upload_to='site/hero/',
+        blank=True,
+        null=True,
     )
 
     class Meta:

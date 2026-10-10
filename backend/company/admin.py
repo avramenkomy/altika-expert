@@ -16,6 +16,7 @@ class CompanyAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'phone',
+        'phone_secondary',
         'email',
         'updated_at',
     )
@@ -38,6 +39,7 @@ class CompanyAdmin(admin.ModelAdmin):
             {
                 'fields': (
                     'phone',
+                    'phone_secondary',
                     'email',
                     'telegram',
                     'whatsapp',

@@ -3,29 +3,42 @@ import { useEffect, useState } from 'react';
 import {
   getCompany,
   getCompanyAdvantages,
+  getExpertises,
   getSiteSettings
 } from '../../api';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Hero from '../../sections/Hero/Hero';
 import About from '../../sections/About/About';
+import Expertises from '../../sections/Expertises/Expertises';
 
 
 function HomePage() {
   const [company, setCompany] = useState(null);
   const [advantages, setAdvantages] = useState([]);
+  const [expertises, setExpertises] = useState([]);
+
   const [settings, setSettings] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const loadedData = async () => {
       try {
-        const [ companyData, settingsData, advantagesData ] = await Promise.all([
-          getCompany(), getSiteSettings(), getCompanyAdvantages()
+        const [
+          companyData,
+          settingsData,
+          advantagesData,
+          expertisesData,
+        ] = await Promise.all([
+          getCompany(),
+          getSiteSettings(),
+          getCompanyAdvantages(),
+          getExpertises(),
         ]);
 
         setCompany(companyData);
         setAdvantages(advantagesData);
         setSettings(settingsData);
+        setExpertises(expertisesData);
       } catch (error) {
         console.error('Не удалось загрузить данные сайта.', error);
         setError('Не удалось загрузить данные сайта.');
@@ -49,7 +62,8 @@ function HomePage() {
 
       <About company={company} advantages={advantages} />
 
-      <section id="expertises" />
+      <Expertises expertises={expertises} />
+
       <section id="valuation" />
       <section id="services" />
       <section id="experts" />

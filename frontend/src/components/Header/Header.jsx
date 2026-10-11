@@ -85,13 +85,13 @@ function Header({ company }) {
         </Container>
       </header>
 
-      <Modal
+      {callbackOpen && <Modal
         open={callbackOpen}
         onClose={() => setCallbackOpen(false)}
         title="Заказать обратный звонок"
       >
         <CallbackForm />
-      </Modal>
+      </Modal>}
     </>
   )
 }

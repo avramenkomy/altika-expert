@@ -8,9 +8,10 @@ import {
   getSiteSettings,
   getServices,
   getExperts,
+  getProcessSteps,
 } from '../../api';
 
-import { APPLICATION_TYPES } from '../../utils/constants';
+import { APPLICATION_TYPES, PROCESS_TYPES } from '../../utils/constants';
 
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Hero from '../../sections/Hero/Hero';
@@ -19,6 +20,7 @@ import Expertises from '../../sections/Expertises/Expertises';
 import Valuation from '../../sections/Valuation/Valuation';
 import Services from '../../sections/Services/Services';
 import Experts from '../../sections/Experts/Experts';
+import ProcessSection from '../../sections/ProcessSection/ProcessSection';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 
@@ -30,6 +32,8 @@ function HomePage() {
   const [valuationTypes, setValuationTypes] = useState([]);
   const [services, setServices] = useState([]);
   const [experts, setExperts] = useState([]);
+  const [expertiseProcess, setExpertiseProcess] = useState([]);
+  const [valuationProcess, setValuationProcess] = useState([]);
 
   const [settings, setSettings] = useState(null);
   const [error, setError] = useState('');
@@ -52,6 +56,8 @@ function HomePage() {
           valuationTypesData,
           servicesData,
           expertsData,
+          expertiseProcessData,
+          valuationProcessData,
         ] = await Promise.all([
           getCompany(),
           getSiteSettings(),
@@ -60,6 +66,8 @@ function HomePage() {
           getValuationTypes(),
           getServices(),
           getExperts(),
+          getProcessSteps(PROCESS_TYPES.EXPERTISE),
+          getProcessSteps(PROCESS_TYPES.VALUATION),
         ]);
 
         setCompany(companyData);
@@ -69,6 +77,8 @@ function HomePage() {
         setValuationTypes(valuationTypesData);
         setServices(servicesData);
         setExperts(expertsData);
+        setExpertiseProcess(expertiseProcessData);
+        setValuationProcess(valuationProcessData);
       } catch (error) {
         console.error('Не удалось загрузить данные сайта.', error);
         setError('Не удалось загрузить данные сайта.');
@@ -124,6 +134,24 @@ function HomePage() {
       />
 
       <Experts experts={experts} />
+
+      <ProcessSection
+        id="expertise-process"
+        eyebrow="Как мы работаем"
+        title="Процесс проведения судебной экспертизы"
+        description="Основные этапы взаимодействия с заказчиком и судом — от первоначального запроса до участия эксперта в судебном заседании."
+        steps={expertiseProcess}
+        alternate
+      />
+
+      <ProcessSection
+        id="valuation-process"
+        eyebrow="Этапы оценки"
+        title="Процесс оказания оценочных услуг"
+        description="Последовательный процесс от первичной консультации и получения документов до подготовки отчёта и дальнейшего сопровождения."
+        steps={valuationProcess}
+      />
+
       <section id="contacts" />
 
       {applicationModal.isOpen && <ApplicationModal

@@ -20,7 +20,15 @@ export const API_ENDPOINTS = {
   EXPERTISES: 'company/expertises/',
   VALUATION_TYPES: 'company/valuation/',
   SERVICES: 'services/',
+  COMPANY_PROCESSES: 'company/processes/',
   SITE_SETTINGS: 'company/settings/',
   APPLICATIONS: 'applications/',
   EXPERTS: 'experts/',
+}
+
+
+// Типы процессов при проведении экспертизы или оценки
+export const PROCESS_TYPES = {
+  EXPERTISE: 'expertise',
+  VALUATION: 'valuation',
 }

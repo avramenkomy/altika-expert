@@ -81,7 +81,6 @@ class ExpertiseAdmin(admin.ModelAdmin):
 class ValuationTypeAdmin(admin.ModelAdmin):
     list_display = (
         'title',
-        'price_from',
         'order',
         'is_active',
         'updated_at',

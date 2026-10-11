@@ -154,14 +154,6 @@ class ValuationType(models.Model):
         null=True
     )
 
-    price_from = models.DecimalField(
-        'Цена от',
-        max_digits=10,
-        decimal_places=2,
-        null=True,
-        blank=True,
-    )
-
     seo_title = models.CharField(
         'SEO Title',
         max_length=255,

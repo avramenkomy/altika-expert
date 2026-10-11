@@ -6,7 +6,7 @@ import './ValuationCard.scss';
 
 function ValuationCard({ valuation }) {
   const {
-    title, slug, short_description: description, image, price_from: priceFrom
+    title, slug, short_description: description, image,
   } = valuation;
 
   return (
@@ -29,12 +29,6 @@ function ValuationCard({ valuation }) {
         {description &&
           <p className="valuation-card__description">
             {description}
-          </p>
-        }
-
-        {priceFrom &&
-          <p className="valuation-card__price">
-            от {Number(priceFrom).toLocaleString('ru-RU')} ₽
           </p>
         }
 

@@ -66,7 +66,6 @@ class ValuationTypeSerializer(serializers.ModelSerializer):
             'short_description',
             'description',
             'image',
-            'price_from',
             'seo_title',
             'seo_description',
         )

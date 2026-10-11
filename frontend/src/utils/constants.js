@@ -21,5 +21,6 @@ export const API_ENDPOINTS = {
   VALUATION_TYPES: 'company/valuation/',
   SERVICES: 'services/',
   SITE_SETTINGS: 'company/settings/',
-  APPLICATIONS: 'applications/'
+  APPLICATIONS: 'applications/',
+  EXPERTS: 'experts/',
 }

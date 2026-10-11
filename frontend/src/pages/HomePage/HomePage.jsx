@@ -7,6 +7,7 @@ import {
   getValuationTypes,
   getSiteSettings,
   getServices,
+  getExperts,
 } from '../../api';
 
 import { APPLICATION_TYPES } from '../../utils/constants';
@@ -17,6 +18,7 @@ import About from '../../sections/About/About';
 import Expertises from '../../sections/Expertises/Expertises';
 import Valuation from '../../sections/Valuation/Valuation';
 import Services from '../../sections/Services/Services';
+import Experts from '../../sections/Experts/Experts';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 
@@ -27,6 +29,7 @@ function HomePage() {
   const [expertises, setExpertises] = useState([]);
   const [valuationTypes, setValuationTypes] = useState([]);
   const [services, setServices] = useState([]);
+  const [experts, setExperts] = useState([]);
 
   const [settings, setSettings] = useState(null);
   const [error, setError] = useState('');
@@ -48,6 +51,7 @@ function HomePage() {
           expertisesData,
           valuationTypesData,
           servicesData,
+          expertsData,
         ] = await Promise.all([
           getCompany(),
           getSiteSettings(),
@@ -55,6 +59,7 @@ function HomePage() {
           getExpertises(),
           getValuationTypes(),
           getServices(),
+          getExperts(),
         ]);
 
         setCompany(companyData);
@@ -63,6 +68,7 @@ function HomePage() {
         setExpertises(expertisesData);
         setValuationTypes(valuationTypesData);
         setServices(servicesData);
+        setExperts(expertsData);
       } catch (error) {
         console.error('Не удалось загрузить данные сайта.', error);
         setError('Не удалось загрузить данные сайта.');
@@ -117,7 +123,7 @@ function HomePage() {
         }}
       />
 
-      <section id="experts" />
+      <Experts experts={experts} />
       <section id="contacts" />
 
       {applicationModal.isOpen && <ApplicationModal

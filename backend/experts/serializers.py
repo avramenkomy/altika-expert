@@ -40,7 +40,7 @@ class ExpertDocumentSerializer(serializers.ModelSerializer):
 class ExpertSerializer(serializers.ModelSerializer):
     full_name = serializers.CharField(read_only=True)
 
-    position = PositionSerializer(
+    positions = PositionSerializer(
         many=True,
         read_only=True,
     )
@@ -59,7 +59,7 @@ class ExpertSerializer(serializers.ModelSerializer):
             'full_name',
             'slug',
             'photo',
-            'position',
+            'positions',
             'specializations',
             'education',
             'experience',

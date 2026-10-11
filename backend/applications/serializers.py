@@ -37,14 +37,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         application_type = attrs.get('application_type')
-        subject = attrs.get('subject', '').strip()
-        email = attrs.get('email', '').strip()
-        message = attrs.get('message', '').strip()
         consent = attrs.get('consent_personal_data')
-
-        attrs['subject'] = subject
-        attrs['email'] = email
-        attrs['message'] = message
 
         if not consent:
             raise serializers.ValidationError(
@@ -55,23 +48,30 @@ class ApplicationSerializer(serializers.ModelSerializer):
                 }
             )
 
-        if application_type in (
+        if application_type == Application.ApplicationType.CALLBACK:
+            return attrs
+
+        errors = {}
+
+        email = attrs.get('email', '').strip()
+        message = attrs.get('message', '').strip()
+
+        if not email:
+            errors['email'] = 'Укажите email.'
+
+        if not message:
+            errors['email'] = 'Опишите ваш вопрос.'
+
+        subject = attrs.get('subject', '').strip()
+
+        if (application_type in (
             Application.ApplicationType.EXPERTISE,
             Application.ApplicationType.VALUATION,
-        ):
-            if not subject:
-                raise serializers.ValidationError({
-                    'subject': 'Необходимо указать тему',
-                })
+            Application.ApplicationType.SERVICE,
+        ) and not subject):
+            errors['subject'] = 'Не указана тема заявки.'
 
-            if not email:
-                raise serializers.ValidationError({
-                    'email': 'Необходимо указать email',
-                })
-
-            if not message:
-                raise serializers.ValidationError({
-                    'message': 'Кратко опишите суть вопроса.',
-                })
+        if errors:
+            raise serializers.ValidationError(errors)
 
         return attrs

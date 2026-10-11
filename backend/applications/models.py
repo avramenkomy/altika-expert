@@ -3,8 +3,10 @@ from django.db import models
 class Application(models.Model):
     class ApplicationType(models.TextChoices):
         CALLBACK = 'callback', 'Обратный звонок'
+        GENERAL = 'general', 'Общая заявка'
         EXPERTISE = 'expertise', 'Заявка на экспертизу'
         VALUATION = 'valuation', 'Заявка на отчет об оценке'
+        SERVICE = 'service', 'Услуга'
 
 
     application_type = models.CharField(

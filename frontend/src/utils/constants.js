@@ -1,6 +1,10 @@
 // типы заявок
 export const APPLICATION_TYPES = {
-  CALLBACK: 'callback', // обратный звонок
+  CALLBACK: 'callback',     // обратный звонок
+  GENERAL: 'general',       // общая заявка
+  EXPERTISE: 'expertise',   // заявка на заключение эксперта
+  VALUATION: 'valuation',   // заявка на отчет об оценке
+  SERVICE: 'service',       // заявка на услугу
 }
 
 // типы статусов ответов на запросы

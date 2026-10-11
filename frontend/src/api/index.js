@@ -1,6 +1,8 @@
 export { default as api } from './api';
 
 export { default as sendCallback } from './sendCallback';
+export { default as sendApplication } from './sendApplication';
+
 export { default as getCompany } from './getCompany';
 export { default as getCompanyAdvantages } from './getCompanyAdvantages';
 export { default as getExpertises } from './getExpertises';

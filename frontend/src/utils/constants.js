@@ -15,6 +15,7 @@ export const API_ENDPOINTS = {
   COMPANY_ADVANTAGES: 'company/advantages/',
   EXPERTISES: 'company/expertises/',
   VALUATION_TYPES: 'company/valuation/',
+  SERVICES: 'services/',
   SITE_SETTINGS: 'company/settings/',
   APPLICATIONS: 'applications/'
 }

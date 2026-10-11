@@ -9,6 +9,7 @@ import {
   getServices,
   getExperts,
   getProcessSteps,
+  getUseCases
 } from '../../api';
 
 import { APPLICATION_TYPES, PROCESS_TYPES } from '../../utils/constants';
@@ -21,6 +22,7 @@ import Valuation from '../../sections/Valuation/Valuation';
 import Services from '../../sections/Services/Services';
 import Experts from '../../sections/Experts/Experts';
 import ProcessSection from '../../sections/ProcessSection/ProcessSection';
+import UseCases from '../../sections/UseCases/UseCases';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 
@@ -34,6 +36,7 @@ function HomePage() {
   const [experts, setExperts] = useState([]);
   const [expertiseProcess, setExpertiseProcess] = useState([]);
   const [valuationProcess, setValuationProcess] = useState([]);
+  const [useCases, setUseCases] = useState([]);
 
   const [settings, setSettings] = useState(null);
   const [error, setError] = useState('');
@@ -58,6 +61,7 @@ function HomePage() {
           expertsData,
           expertiseProcessData,
           valuationProcessData,
+          useCasesData,
         ] = await Promise.all([
           getCompany(),
           getSiteSettings(),
@@ -68,6 +72,7 @@ function HomePage() {
           getExperts(),
           getProcessSteps(PROCESS_TYPES.EXPERTISE),
           getProcessSteps(PROCESS_TYPES.VALUATION),
+          getUseCases(),
         ]);
 
         setCompany(companyData);
@@ -79,6 +84,7 @@ function HomePage() {
         setExperts(expertsData);
         setExpertiseProcess(expertiseProcessData);
         setValuationProcess(valuationProcessData);
+        setUseCases(useCasesData);
       } catch (error) {
         console.error('Не удалось загрузить данные сайта.', error);
         setError('Не удалось загрузить данные сайта.');
@@ -151,6 +157,8 @@ function HomePage() {
         description="Последовательный процесс от первичной консультации и получения документов до подготовки отчёта и дальнейшего сопровождения."
         steps={valuationProcess}
       />
+
+      <UseCases useCases={useCases} />
 
       <section id="contacts" />
 

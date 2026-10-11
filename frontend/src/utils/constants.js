@@ -24,6 +24,7 @@ export const API_ENDPOINTS = {
   SITE_SETTINGS: 'company/settings/',
   APPLICATIONS: 'applications/',
   EXPERTS: 'experts/',
+  USE_CASES: 'company/use-cases/',
 }
 
 

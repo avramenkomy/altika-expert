@@ -25,6 +25,7 @@ import Experts from '../../sections/Experts/Experts';
 import ProcessSection from '../../sections/ProcessSection/ProcessSection';
 import UseCases from '../../sections/UseCases/UseCases';
 import Documents from '../../sections/Documents/Documents';
+import ApplicationSection from '../../sections/ApplicationSection/ApplicationSection';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 
@@ -170,6 +171,8 @@ function HomePage() {
         documents={documents}
         isVisible={settings?.show_documents_page}
       />
+
+      <ApplicationSection />
 
       <section id="contacts" />
 

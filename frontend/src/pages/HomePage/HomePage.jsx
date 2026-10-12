@@ -9,7 +9,8 @@ import {
   getServices,
   getExperts,
   getProcessSteps,
-  getUseCases
+  getUseCases,
+  getCompanyDocuments,
 } from '../../api';
 
 import { APPLICATION_TYPES, PROCESS_TYPES } from '../../utils/constants';
@@ -23,6 +24,7 @@ import Services from '../../sections/Services/Services';
 import Experts from '../../sections/Experts/Experts';
 import ProcessSection from '../../sections/ProcessSection/ProcessSection';
 import UseCases from '../../sections/UseCases/UseCases';
+import Documents from '../../sections/Documents/Documents';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 
@@ -37,6 +39,7 @@ function HomePage() {
   const [expertiseProcess, setExpertiseProcess] = useState([]);
   const [valuationProcess, setValuationProcess] = useState([]);
   const [useCases, setUseCases] = useState([]);
+  const [documents, setDocuments] = useState([]);
 
   const [settings, setSettings] = useState(null);
   const [error, setError] = useState('');
@@ -62,6 +65,7 @@ function HomePage() {
           expertiseProcessData,
           valuationProcessData,
           useCasesData,
+          documentsData,
         ] = await Promise.all([
           getCompany(),
           getSiteSettings(),
@@ -73,6 +77,7 @@ function HomePage() {
           getProcessSteps(PROCESS_TYPES.EXPERTISE),
           getProcessSteps(PROCESS_TYPES.VALUATION),
           getUseCases(),
+          getCompanyDocuments(),
         ]);
 
         setCompany(companyData);
@@ -85,6 +90,7 @@ function HomePage() {
         setExpertiseProcess(expertiseProcessData);
         setValuationProcess(valuationProcessData);
         setUseCases(useCasesData);
+        setDocuments(documentsData);
       } catch (error) {
         console.error('Не удалось загрузить данные сайта.', error);
         setError('Не удалось загрузить данные сайта.');
@@ -159,6 +165,11 @@ function HomePage() {
       />
 
       <UseCases useCases={useCases} />
+
+      <Documents
+        documents={documents}
+        isVisible={settings?.show_documents_page}
+      />
 
       <section id="contacts" />
 

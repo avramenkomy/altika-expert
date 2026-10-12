@@ -1,0 +1,145 @@
+.contacts {
+  padding-block: 96px;
+  background: var(--color-background);
+
+  &__header {
+    max-width: 760px;
+    margin-bottom: 48px;
+  }
+
+  &__eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+  }
+
+  &__title {
+    margin-bottom: 16px;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.15;
+  }
+
+  &__description {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.7fr) minmax(0, 1.3fr);
+    gap: 48px;
+    align-items: stretch;
+  }
+
+  &__info {
+    display: grid;
+    align-content: start;
+    gap: 28px;
+    padding: 32px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 14px;
+    > svg {
+      width: 21px;
+      height: 21px;
+      color: var(--color-primary);
+    }
+
+    div {
+      display: grid;
+      gap: 5px;
+    }
+
+    a, p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--color-text);
+    }
+
+    a {
+      width: fit-content;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  &__label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  &__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 4px;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-primary);
+      transition:
+        border-color var(--transition-fast),
+        background var(--transition-fast);
+
+      &:hover {
+        border-color: var(--color-primary);
+        background: var(--color-primary-light);
+      }
+
+      svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .contacts {
+    padding-block: 72px;
+
+    &__layout {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .contacts {
+    padding-block: 56px;
+
+    &__header {
+      margin-bottom: 32px;
+    }
+
+    &__info {
+      padding: 24px;
+    }
+  }
+}

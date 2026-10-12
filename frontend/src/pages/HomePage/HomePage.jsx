@@ -26,6 +26,7 @@ import ProcessSection from '../../sections/ProcessSection/ProcessSection';
 import UseCases from '../../sections/UseCases/UseCases';
 import Documents from '../../sections/Documents/Documents';
 import ApplicationSection from '../../sections/ApplicationSection/ApplicationSection';
+import Contacts from '../../sections/Contacts/Contacts';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 
@@ -174,7 +175,7 @@ function HomePage() {
 
       <ApplicationSection />
 
-      <section id="contacts" />
+      <Contacts company={company} />
 
       {applicationModal.isOpen && <ApplicationModal
         isOpen={applicationModal.isOpen}

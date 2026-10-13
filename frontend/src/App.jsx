@@ -5,6 +5,7 @@ import {
 
 import MainLayout from './layouts/MainLayout/MainLayout';
 import HomePage from './pages/HomePage/HomePage';
+import ExpertisePage from './pages/ExpertisePage/ExpertisePage';
 
 
 function App() {
@@ -14,6 +15,11 @@ function App() {
         <Route
           path="/"
           element={<HomePage />}
+        />
+
+        <Route
+          path="/expertises/:slug"
+          element={<ExpertisePage />}
         />
       </Route>
     </Routes>

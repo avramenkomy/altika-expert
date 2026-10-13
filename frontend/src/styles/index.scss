@@ -59,3 +59,11 @@ h1, h2, h3, p {
   outline: 3px solid var(--color-primary);
   outline-offset: 3px;
 }
+
+
+// Если при автоскролле название секции заезжает под хидер, то можно применить
+// стили
+
+// section[id] {
+//   scroll-margin-top: calc(var(--header-height) + 24px);
+// }

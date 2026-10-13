@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 
+import ScrollToHash from '../../components/ScrollToHash/ScrollToHash';
+
 import { getCompany } from '../../api';
 
 import Footer from '../../components/Footer/Footer';
@@ -26,6 +28,8 @@ function MainLayout() {
 
   return (
     <>
+      <ScrollToHash />
+
       <Header company={company} />
 
       <main>

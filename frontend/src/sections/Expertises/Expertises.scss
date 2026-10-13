@@ -23,11 +23,8 @@
 
   &__title {
     margin-bottom: 16px;
-
-    font-size: 17px;
-    line-height: 1.65;
-
-    color: var(--color-text-muted);
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.15;
   }
 
   &__grid {

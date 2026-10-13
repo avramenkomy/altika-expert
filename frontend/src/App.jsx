@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage/HomePage';
 import ExpertisePage from './pages/ExpertisePage/ExpertisePage';
 import ValuationPage from './pages/ValuationPage/ValuationPage';
 import ServicePage from './pages/ServicePage/ServicePage';
+import ExpertPage from './pages/ExpertPage/ExpertPage';
 
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
         <Route
           path="/services/:slug"
           element={<ServicePage />}
+        />
+
+        <Route
+          path="/experts/:slug"
+          element={<ExpertPage />}
         />
       </Route>
     </Routes>

@@ -1,0 +1,60 @@
+.expert-document-card {
+  overflow: hidden;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface);
+
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    aspect-ratio: 4 / 5;
+
+    padding: 16px;
+
+    background: var(--color-background-alt);
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
+  }
+
+  &__content {
+    padding: 18px;
+  }
+
+  &__type {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    color: var(--color-primary);
+  }
+
+  &__title {
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.45;
+
+    color: var(--color-text);
+  }
+}

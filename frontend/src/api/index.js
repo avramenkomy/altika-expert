@@ -8,6 +8,7 @@ export { default as getCompanyAdvantages } from './getCompanyAdvantages';
 export { default as getCompanyDocuments } from './getCompanyDocuments';
 export { default as getExpertises } from './getExpertises';
 export { default as getExpertiseItem } from './getExpertiseItem';
+export { default as getValuationItem } from './getValuationItem';
 export { default as getValuationTypes } from './getValuationTypes';
 export { default as getServices } from './getServices';
 export { default as getSiteSettings } from './getSiteSettings';

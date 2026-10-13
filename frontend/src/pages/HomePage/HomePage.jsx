@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router';
 
 import {
-  getCompany,
   getCompanyAdvantages,
   getExpertises,
   getValuationTypes,
@@ -15,7 +15,6 @@ import {
 
 import { APPLICATION_TYPES, PROCESS_TYPES } from '../../utils/constants';
 
-import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Hero from '../../sections/Hero/Hero';
 import About from '../../sections/About/About';
 import Expertises from '../../sections/Expertises/Expertises';
@@ -32,7 +31,8 @@ import ApplicationModal from '../../components/ApplicationModal/ApplicationModal
 
 
 function HomePage() {
-  const [company, setCompany] = useState(null);
+  const { company } = useOutletContext();
+
   const [advantages, setAdvantages] = useState([]);
   const [expertises, setExpertises] = useState([]);
   const [valuationTypes, setValuationTypes] = useState([]);
@@ -57,7 +57,6 @@ function HomePage() {
     const loadedData = async () => {
       try {
         const [
-          companyData,
           settingsData,
           advantagesData,
           expertisesData,
@@ -69,7 +68,6 @@ function HomePage() {
           useCasesData,
           documentsData,
         ] = await Promise.all([
-          getCompany(),
           getSiteSettings(),
           getCompanyAdvantages(),
           getExpertises(),
@@ -81,8 +79,6 @@ function HomePage() {
           getUseCases(),
           getCompanyDocuments(),
         ]);
-
-        setCompany(companyData);
         setAdvantages(advantagesData);
         setSettings(settingsData);
         setExpertises(expertisesData);
@@ -124,7 +120,7 @@ function HomePage() {
   }
 
   return (
-    <MainLayout company={company}>
+    <>
       <Hero
         company={company}
         settings={settings}
@@ -183,7 +179,7 @@ function HomePage() {
         applicationType={applicationModal.applicationType}
         subject={applicationModal.subject}
       />}
-    </MainLayout>
+    </>
   )
 }
 

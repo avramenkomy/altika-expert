@@ -1,4 +1,5 @@
 import {
+  AttributionControl,
   MapContainer,
   Marker,
   Popup,
@@ -49,10 +50,15 @@ function LeafletMap({
         center={position}
         zoom={16}
         scrollWheelZoom={false}
+        attributionControl={false}
         className="leaflet-map__container"
       >
+        <AttributionControl
+          prefix='<a href="https://leafletjs.com" target="_blank">Leaflet</a>'
+        />
+
         <TileLayer
-          attribution="&copy; OpenStreetMap contributors"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 

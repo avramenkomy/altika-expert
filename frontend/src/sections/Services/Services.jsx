@@ -5,6 +5,8 @@ import './Services.scss';
 
 
 function Services({ services, onApplicationClick }) {
+  if (!services?.length) return null;
+
   return (
     <section
       id="services"

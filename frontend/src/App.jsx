@@ -9,6 +9,7 @@ import ExpertisePage from './pages/ExpertisePage/ExpertisePage';
 import ValuationPage from './pages/ValuationPage/ValuationPage';
 import ServicePage from './pages/ServicePage/ServicePage';
 import ExpertPage from './pages/ExpertPage/ExpertPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 
 function App() {
@@ -38,6 +39,11 @@ function App() {
         <Route
           path="/experts/:slug"
           element={<ExpertPage />}
+        />
+
+        <Route
+          path="*"
+          element={<NotFoundPage />}
         />
       </Route>
     </Routes>

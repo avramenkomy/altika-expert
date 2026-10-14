@@ -1,0 +1,52 @@
+.not-found {
+  display: grid;
+  align-items: center;
+  min-height: 58vh;
+  padding-block: 64px;
+  background: var(--color-background-alt);
+
+  &__content {
+    max-width: 640px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  &__code {
+    display: block;
+    margin-bottom: 16px;
+    font-size: clamp(80px, 15vw, 160px);
+    font-weight: 800;
+    line-height: 0.9;
+    color: var(--color-primary-light);
+  }
+
+  &__title {
+    margin-bottom: 16px;
+    font-size: clamp(32px, 5vw, 48px);
+    color: var(--color-text);
+  }
+
+  &__description {
+    margin-bottom: 32px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding-inline: 24px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    color: var(--color-text-inverse);
+    background: var(--color-primary);
+    transition: background var(--transition-fast);
+
+    &:hover {
+      background: var(--color-primary-hover);
+    }
+  }
+}

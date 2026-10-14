@@ -8,6 +8,7 @@ import { getServiceItem } from '../../api';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 import Container from '../../components/Container/Container';
+import PageSeo from '../../components/PageSeo/PageSeo';
 
 import { APPLICATION_TYPES } from '../../utils/constants';
 
@@ -42,18 +43,6 @@ function ServicePage() {
     loadService();
   }, [slug]);
 
-  useEffect(() => {
-    if (!service) return;
-
-    document.title = service.seo_title || service.title;
-
-    const description = document.querySelector('meta[name=description]');
-
-    if (description && service.seo_description) {
-      description.setAttribute('content', service.seo_description);
-    }
-  }, [service]);
-
   if (isLoading) {
     return (
       <Container>
@@ -76,6 +65,13 @@ function ServicePage() {
 
   return (
     <>
+      <PageSeo
+        title={service.seo_title
+          || `${service.title} | АНО Экспертное бюро «Альтика»`
+        }
+        description={service.seo_description}
+      />
+
       <article className="service-page">
         <header className="service-page__hero">
           {service.image &&

@@ -10,6 +10,7 @@ import { getExpertItem } from '../../api';
 import Container from '../../components/Container/Container';
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 import ExpertDocumentCard from '../../components/ExpertDocumentCard/ExpertDocumentCard';
+import PageSeo from '../../components/PageSeo/PageSeo';
 
 import { APPLICATION_TYPES } from '../../utils/constants';
 
@@ -44,22 +45,6 @@ function ExpertPage() {
     loadExpertData();
   }, [slug]);
 
-  useEffect(() => {
-    if (!expert) return;
-
-    document.title = expert.seo_title
-      || `${expert.full_name} | Экспертное бюро "Альтика"`;
-
-    const description = document.querySelector('meta[name="description"]');
-
-    if (description && expert.seo_description) {
-      description.setAttribute(
-        'content',
-        expert.seo_description
-      )
-    }
-  }, [expert]);
-
   if (isLoading) {
     return (
       <Container>
@@ -87,6 +72,13 @@ function ExpertPage() {
 
   return (
     <>
+      <PageSeo
+        title={expert.seo_title
+          || `${expert.title} | АНО Экспертное бюро «Альтика»`
+        }
+        description={expert.seo_description}
+      />
+
       <article className="expert-page">
         <section className="expert-page__hero">
           <Container>

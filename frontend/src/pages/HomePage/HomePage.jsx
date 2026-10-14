@@ -27,6 +27,8 @@ import Documents from '../../sections/Documents/Documents';
 import ApplicationSection from '../../sections/ApplicationSection/ApplicationSection';
 import Contacts from '../../sections/Contacts/Contacts';
 
+import PageSeo from '../../components/PageSeo/PageSeo';
+
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 
 
@@ -121,6 +123,13 @@ function HomePage() {
 
   return (
     <>
+      <PageSeo
+        title={settings?.seo_title
+          || `АНО Экспертное бюро «Альтика»`
+        }
+        description={settings?.seo_description}
+      />
+
       <Hero
         company={company}
         settings={settings}

@@ -8,6 +8,7 @@ import { getValuationItem } from '../../api';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 import Container from '../../components/Container/Container';
+import PageSeo from '../../components/PageSeo/PageSeo';
 
 import { APPLICATION_TYPES } from '../../utils/constants';
 
@@ -42,18 +43,6 @@ function ValuationPage() {
     loadValuation();
   }, [slug]);
 
-  useEffect(() => {
-    if (!valuation) return;
-
-    document.title = valuation.seo_title || valuation.title;
-
-    const description = document.querySelector('meta[name=description]');
-
-    if (description && valuation.seo_description) {
-      description.setAttribute('content', valuation.seo_description);
-    }
-  }, [valuation]);
-
   if (isLoading) {
     return (
       <Container>
@@ -76,6 +65,13 @@ function ValuationPage() {
 
   return (
     <>
+      <PageSeo
+        title={valuation.seo_title
+          || `${valuation.title} | АНО Экспертное бюро «Альтика»`
+        }
+        description={valuation.seo_description}
+      />
+      
       <article className="valuation-page">
         <header className="valuation-page__hero">
           {valuation.image &&

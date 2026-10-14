@@ -9,6 +9,8 @@ import { getExpertiseItem } from '../../api';
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 import Container from '../../components/Container/Container';
 
+import PageSeo from '../../components/PageSeo/PageSeo';
+
 import { APPLICATION_TYPES } from '../../utils/constants';
 
 import './ExpertisePage.scss';
@@ -42,18 +44,6 @@ function ExpertisePage() {
     loadExpertise();
   }, [slug]);
 
-  useEffect(() => {
-    if (!expertise) return;
-
-    document.title = expertise.seo_title || expertise.title;
-
-    const description = document.querySelector('meta[name=description]');
-
-    if (description && expertise.seo_description) {
-      description.setAttribute('content', expertise.seo_description);
-    }
-  }, [expertise]);
-
   if (isLoading) {
     return (
       <Container>
@@ -76,6 +66,13 @@ function ExpertisePage() {
 
   return (
     <>
+      <PageSeo
+        title={ expertise.seo_title
+          || `${expertise.title} | АНО Экспертное бюро «Альтика»`
+        }
+        description={expertise.seo_description}
+      />
+      
       <article className="expertise-page">
         <header className="expertise-page__hero">
           {expertise.image &&

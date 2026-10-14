@@ -66,6 +66,8 @@ class ExpertSerializer(serializers.ModelSerializer):
             'qualification',
             'biography',
             'documents',
+            'seo_title',
+            'seo_description',
         )
 
     def get_documents(self, obj):

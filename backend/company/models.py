@@ -327,6 +327,18 @@ class SiteSettings(models.Model):
         null=True,
     )
 
+    seo_title = models.CharField(
+        'SEO title главной страницы',
+        max_length=255,
+        blank=True,
+    )
+
+    seo_description = models.CharField(
+        'SEO description главной страницы',
+        max_length=320,
+        blank=True,
+    )
+
     class Meta:
         verbose_name = 'Настройки сайта'
         verbose_name_plural = 'Настройки сайта'

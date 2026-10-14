@@ -78,6 +78,18 @@ class Expert(models.Model):
         blank=True,
     )
 
+    seo_title = models.CharField(
+        'SEO title',
+        max_length=255,
+        blank=True,
+    )
+
+    seo_description = models.CharField(
+        'SEO description',
+        max_length=320,
+        blank=True,
+    )
+
     order = models.PositiveBigIntegerField(
         'Порядок отображения',
         default=0,

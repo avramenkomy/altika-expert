@@ -47,7 +47,17 @@ function ExpertPage() {
   useEffect(() => {
     if (!expert) return;
 
-    document.title = `${expert.full_name} | Экспертное бюро "Альтика"`;
+    document.title = expert.seo_title
+      || `${expert.full_name} | Экспертное бюро "Альтика"`;
+
+    const description = document.querySelector('meta[name="description"]');
+
+    if (description && expert.seo_description) {
+      description.setAttribute(
+        'content',
+        expert.seo_description
+      )
+    }
   }, [expert]);
 
   if (isLoading) {

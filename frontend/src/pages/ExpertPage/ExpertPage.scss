@@ -328,9 +328,23 @@
 
 @media (max-width: 900px) {
   .expert-page {
+    .__hero {
+      padding-block: 48px 64px;
+    }
+
     &__hero-content {
       grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
       gap: 40px;
+    }
+
+    &__title {
+      font-size: clamp(34px, 5vw, 48px);
+    }
+
+    &__positions {
+      p {
+        font-size: 16px;
+      }
     }
 
     &__details-grid {
@@ -340,17 +354,21 @@
     &__documents-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    &__cta-content {
+      gap: 32px;
+    }
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
   .expert-page {
     &__hero {
-      padding-block: 40px 64px;
+      padding-block: 32px 56px;
     }
 
     &__back {
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     &__hero-content {
@@ -359,18 +377,46 @@
     }
 
     &__photo-wrapper {
-      max-width: 360px;
+      width: 100%;
+      max-width: 340px;
+      margin-inline: auto;
+    }
+
+    &__hero-info {
+      width: 100%;
     }
 
     &__title {
-      font-size: clamp(34px, 11vw, 48px);
+      margin-bottom: 16px;
+      font-size: clamp(32px, 10vw, 44px);
+    }
+
+    &__positions {
+      margin-bottom: 20px;
+
+      p {
+        font-size: 16px;
+      }
+    }
+
+    &__specializations {
+      margin-bottom: 28px;
     }
 
     &__about,
     &__details,
     &__experience,
     &__documents {
-      padding-block: 64px;
+      padding-block: 56px;
+    }
+
+    &__section-title {
+      margin-bottom: 24px;
+      font-size: clamp(28px, 8vw, 36px);
+    }
+
+    &__detail-card {
+      padding: 24px;
     }
 
     &__documents-grid {
@@ -378,9 +424,48 @@
     }
 
     &__cta-content {
-      align-items: flex-start;
+      align-items: center;
       flex-direction: column;
       gap: 28px;
+    }
+
+    &__cta-button {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .expert-page {
+    &__hero {
+      padding-block: 24px 48px;
+    }
+
+    &__photo-wrapper {
+      max-width: 300px;
+    }
+
+    &__application {
+      width: 100%;
+    }
+
+    &__specializations {
+      span {
+        width: 100%;
+
+        text-align: center;
+      }
+    }
+
+    &__about,
+    &__details,
+    &__experience,
+    &__documents {
+      padding-block: 48px;
+    }
+
+    &__detail-card {
+      padding: 20px;
     }
   }
 }

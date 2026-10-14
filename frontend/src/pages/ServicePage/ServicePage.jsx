@@ -70,6 +70,8 @@ function ServicePage() {
           || `${service.title} | АНО Экспертное бюро «Альтика»`
         }
         description={service.seo_description}
+        path={`/services/${service.slug}`}
+        image={service.image}
       />
 
       <article className="service-page">

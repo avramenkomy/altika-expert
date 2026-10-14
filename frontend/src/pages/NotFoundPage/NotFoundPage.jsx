@@ -12,6 +12,7 @@ function NotFoundPage() {
       <PageSeo
         title="Страница не найдена | Экспертное бюро «Альтика»"
         description="Запрашиваемая страница не найдена."
+        noIndex
       />
 
       <section className="not-found">

@@ -70,8 +70,10 @@ function ValuationPage() {
           || `${valuation.title} | АНО Экспертное бюро «Альтика»`
         }
         description={valuation.seo_description}
+        path={`/valuation/${valuation.slug}`}
+        image={valuation.image}
       />
-      
+
       <article className="valuation-page">
         <header className="valuation-page__hero">
           {valuation.image &&

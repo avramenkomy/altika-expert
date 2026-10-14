@@ -128,6 +128,7 @@ function HomePage() {
           || `АНО Экспертное бюро «Альтика»`
         }
         description={settings?.seo_description}
+        path="/"
       />
 
       <Hero

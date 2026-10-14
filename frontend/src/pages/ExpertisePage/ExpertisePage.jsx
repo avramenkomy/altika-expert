@@ -71,8 +71,10 @@ function ExpertisePage() {
           || `${expertise.title} | АНО Экспертное бюро «Альтика»`
         }
         description={expertise.seo_description}
+        path={`/expertises/${expertise.slug}`}
+        image={expertise.image}
       />
-      
+
       <article className="expertise-page">
         <header className="expertise-page__hero">
           {expertise.image &&

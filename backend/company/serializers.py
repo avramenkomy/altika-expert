@@ -99,8 +99,11 @@ class SiteSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteSettings
         fields = (
+            'id',
             'show_documents_page',
             'hero_title',
             'hero_subtitle',
             'hero_image',
+            'seo_title',
+            'seo_description',
         )

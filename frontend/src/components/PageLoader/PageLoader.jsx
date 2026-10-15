@@ -1,5 +1,7 @@
 import './PageLoader.scss';
 
+import logo from '../../assets/images/logo.svg';
+
 function PageLoader() {
   return (
     <div
@@ -7,7 +9,7 @@ function PageLoader() {
       role="status"
       aria-label="Загрузка страницы"
     >
-      <div className="page-loader__logo" aria-hidden="true">A</div>
+      <img src={logo} alt="" className="page-loader__logo" />
     </div>
   )
 }

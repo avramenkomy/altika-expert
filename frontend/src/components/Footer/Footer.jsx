@@ -9,6 +9,8 @@ import Container from '../Container/Container';
 
 import './Footer.scss';
 
+import logoWhite from '../../assets/images/logo_white.svg';
+
 
 function Footer({ company }) {
   if (!company) return null;
@@ -41,9 +43,7 @@ function Footer({ company }) {
               className="footer__logo"
               aria-label="Экспертное бюро Альтика — на главную"
             >
-              <span className="footer__logo-monogram">
-                А
-              </span>
+              <img src={logoWhite} alt="" className="footer__logo-image" />
 
               <span>
                 {shortName || 'Экспертное бюро «Альтика»'}

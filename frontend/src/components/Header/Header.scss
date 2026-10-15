@@ -19,61 +19,15 @@
 
   &__logo {
     flex: 0 0 auto;
-
     display: flex;
     align-items: center;
-
     color: var(--color-text-inverse);
-
-    img {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-    }
   }
 
-  &__logo-monogram {
-    position: relative;
-
-    display: grid;
-    place-items: center;
-
-    width: 48px;
-    height: 48px;
-
-    border: 1px solid rgb(255 255 255 / 90%);
-    border-radius: 50%;
-
-    font-family: 'Marck Script', cursive;
-    font-size: 34px;
-    font-weight: 400;
-    line-height: 1;
-
-    color: var(--color-text-inverse);
-    background: rgb(255 255 255 / 5%);
-
-    transform: translateY(1px);
-
-    transition:
-      background var(--transition-fast),
-      transform var(--transition-fast);
-
-    &::after {
-      content: '';
-
-      position: absolute;
-      inset: 4px;
-
-      border: 1px solid rgb(255 255 255 / 30%);
-      border-radius: 50%;
-
-      pointer-events: none;
-    }
-  }
-
-  &__logo:hover &__logo-monogram {
-    transform: scale(1.04);
-    background: rgb(255 255 255 / 12%),
+  &__logo-image {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
   }
 
   &__nav {
@@ -218,5 +172,12 @@
         display: grid;
       }
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .header__logo-image {
+    width: 52px;
+    height: 52px;
   }
 }

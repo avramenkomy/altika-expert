@@ -12,6 +12,8 @@ import CallbackForm from '../CallbackForm/CallbackForm';
 
 import './Header.scss';
 
+import logoWhite from '../../assets/images/logo_white.svg';
+
 
 function Header({ company }) {
   const [callbackOpen, setCallbackOpen] = useState(false);
@@ -30,10 +32,7 @@ function Header({ company }) {
             className="header__logo"
             aria-label="Экспертное бюро Альтика — на главную"
           >
-            {company?.logo
-              ? <img src={company.logo} alt={company.short_name || company.name} />
-              : <span className="header__logo-monogram">А</span>
-            }
+            <img src={logoWhite} alt="" className="header__logo-image" />
           </Link>
 
           <nav

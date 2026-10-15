@@ -1,4 +1,7 @@
 import { useState } from 'react';
+
+import { Link } from 'react-router';
+
 import {
   Mail, Menu, Phone, X,
 } from 'lucide-react';
@@ -22,16 +25,16 @@ function Header({ company }) {
     <>
       <header className="header">
         <Container className="header__container">
-          <a
-            href="#top"
+          <Link
+            to="/"
             className="header__logo"
-            aria-label="На верх главной страницы"
+            aria-label="Экспертное бюро Альтика — на главную"
           >
             {company?.logo
               ? <img src={company.logo} alt={company.short_name || company.name} />
               : <span className="header__logo-monogram">А</span>
             }
-          </a>
+          </Link>
 
           <nav
             className={`header__nav ${menuOpen ? "header__nav--open" : ""}`}

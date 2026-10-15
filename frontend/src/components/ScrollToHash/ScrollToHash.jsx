@@ -3,10 +3,14 @@ import { useLocation } from 'react-router';
 
 
 function ScrollToHash() {
-  const { hash } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (!hash) return;
+    if (!hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto', });
+
+      return;
+    }
 
     const id = decodeURIComponent(hash.slice(1));
 
@@ -37,7 +41,7 @@ function ScrollToHash() {
     });
 
     return () => observer.disconnect();
-  }, [hash]);
+  }, [pathname, hash]);
 
   return null;
 }

@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+
 import {
   Mail,
   Phone,
@@ -34,10 +36,10 @@ function Footer({ company }) {
       <Container>
         <div className="footer__content">
           <div className="footer__company">
-            <a
-              href="#top"
+            <Link
+              to="/"
               className="footer__logo"
-              aria-label="Вернуться наверх"
+              aria-label="Экспертное бюро Альтика — на главную"
             >
               <span className="footer__logo-monogram">
                 А
@@ -46,7 +48,7 @@ function Footer({ company }) {
               <span>
                 {shortName || 'Экспертное бюро «Альтика»'}
               </span>
-            </a>
+            </Link>
 
             {name && (
               <p className="footer__company-name">

@@ -1,6 +1,13 @@
 {% load static %}
 <!doctype html>
 <html lang="ru">
+
+  {% if vite_assets %}
+    {% for css_file in vite_assets.css %}
+      <Link rel="stylesheet" href="{% static css_file %}">
+    {% endfor %}
+  {% endif %}
+
   <head>
     <meta charset="UTF-8">
     <meta
@@ -45,16 +52,17 @@
     <div id="root"></div>
 
     {% if vite_dev_server_url %}
-    <script type="module">
-      import RefreshRuntime from '{{ vite_dev_server_url }}/@react-refresh'
+    
+      <script type="module">
+        import RefreshRuntime from '{{ vite_dev_server_url }}/@react-refresh'
 
-      RefreshRuntime.injectIntoGlobalHook(window)
+        RefreshRuntime.injectIntoGlobalHook(window)
 
-      window.$RefreshReg$ = () => {}
-      window.$RefreshSig$ = () => (type) => type
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
 
-      window.__vite_plugin_react_preamble_installed__ = true
-    </script>
+        window.__vite_plugin_react_preamble_installed__ = true
+      </script>
 
       <script
         type="module"
@@ -65,6 +73,14 @@
         type="module"
         src="{{ vite_dev_server_url }}/src/main.jsx"
       ></script>
+
+    {% elif vite_assets %}
+
+      <script
+        type="module"
+        src="{% static vite_assets.js %}"
+      ></script>
+
     {% endif %}
   </body>
 </html>

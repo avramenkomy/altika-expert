@@ -12,7 +12,7 @@ class SeoData:
     image: str=''
     noindex: bool=False
 
-DEFAULT_TITLE = 'АНО "Экспертное бюро "Альтика""'
+DEFAULT_TITLE = 'АНО "Экспертное бюро «Альтика»"'
 DEFAULT_DESCRIPTION = (
     'Судебные и внесудебные экспертизы, оценка имущества ',
     'и экспертные услуги.'
@@ -45,7 +45,7 @@ def get_expertise_seo(slug):
 
     return SeoData(
         title=(
-            item.seo_title or f'{item.title} | АНО "Экспертное бюро "Альтика""'
+            item.seo_title or f'{item.title} | АНО "Экспертное бюро «Альтика»"'
         ),
         description=item.seo_description,
         image=item.image.url if item.image else '',
@@ -63,7 +63,7 @@ def get_valuation_seo(slug):
 
     return SeoData(
         title=(
-            item.seo_title or f'{item.title} | АНО "Экспертное бюро "Альтика""'
+            item.seo_title or f'{item.title} | АНО "Экспертное бюро «Альтика»"'
         ),
         description=item.seo_description,
         image=item.image.url if item.image else '',
@@ -81,7 +81,7 @@ def get_service_seo(slug):
 
     return SeoData(
         title=(
-            item.seo_title or f'{item.title} | АНО "Экспертное бюро "Альтика""'
+            item.seo_title or f'{item.title} | АНО "Экспертное бюро «Альтика»"'
         ),
         description=item.seo_description,
         image=item.image.url if item.image else '',
@@ -99,7 +99,7 @@ def get_expert_seo(slug):
 
     return SeoData(
         title=(
-            item.seo_title or f'{item.title} | АНО "Экспертное бюро "Альтика""'
+            item.seo_title or f'{item.title} | АНО "Экспертное бюро «Альтика»"'
         ),
         description=item.seo_description,
         image=item.photo.url if item.photo else '',

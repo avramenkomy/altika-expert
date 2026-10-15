@@ -16,7 +16,7 @@ function About(props) {
       <Container>
         <div className="about__header">
           <span className="about__eyebrow">
-            Экспертное бюро "Альтика"
+            Экспертное бюро «Альтика»
           </span>
 
           <h2

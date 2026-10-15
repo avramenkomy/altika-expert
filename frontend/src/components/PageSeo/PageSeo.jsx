@@ -26,11 +26,17 @@ function PageSeo({ title, description, path='/', image, noIndex=false }) {
 
     if (description) {
       setMeta(
+        'meta[name="description"]',
+        'name',
+        'description',
+        description,
+      );
+      setMeta(
         'meta[property="og:description"]',
         'property',
         'og:description',
-        description
-      );
+        description,
+      )
     }
 
     const canonicalUrl = new URL(path, SITE_URL).toString();
@@ -64,11 +70,11 @@ function PageSeo({ title, description, path='/', image, noIndex=false }) {
       'meta[property="og:site_name"]',
       'property',
       'og:site_name',
-      'Экспертное бюро "Альтика"',
+      'Экспертное бюро «Альтика»',
     );
 
     setMeta(
-      'meta[property="og:robots"]',
+      'meta[name="robots"]',
       'name',
       'robots',
       noIndex

@@ -74,7 +74,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -192,4 +194,15 @@ TELEGRAM_BOT_TOKEN = os.getenv(
 TELEGRAM_CHAT_ID = os.getenv(
     'TELEGRAM_CHAT_ID',
     '',
+)
+
+
+SITE_URL = os.getenv(
+    'SITE_URL',
+    'http://127.0.0.1:8000',
+)
+
+VITE_DEV_SERVER_URL = os.getenv(
+    'VITE_DEV_SERVER_URL',
+    'http://127.0.0.1:5173',
 )

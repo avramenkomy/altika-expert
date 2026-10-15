@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ seo.title }}</title>
+
+    {% if seo.description %}
+    <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+
+    <meta
+      name="robots"
+      content="{% if seo.noindex %}noindex, nofollow{% else %}index, follow{% endif %}"
+    >
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:title" content="{{ seo.title }}">
+
+    {% if seo.description %}
+      <meta property="og:description" content="{{ seo.description }}">
+    {% endif %}
+
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Экспертное бюро «Альтика»">
+
+    {% if image_url %}
+      <meta property="og:image" content="{{ image_url }}">
+    {% endif %}
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    {% if vite_dev_server_url %}
+    <script type="module">
+      import RefreshRuntime from '{{ vite_dev_server_url }}/@react-refresh'
+
+      RefreshRuntime.injectIntoGlobalHook(window)
+
+      window.$RefreshReg$ = () => {}
+      window.$RefreshSig$ = () => (type) => type
+
+      window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
+      <script
+        type="module"
+        src="{{ vite_dev_server_url }}/@vite/client"
+      ></script>
+
+      <script
+        type="module"
+        src="{{ vite_dev_server_url }}/src/main.jsx"
+      ></script>
+    {% endif %}
+  </body>
+</html>

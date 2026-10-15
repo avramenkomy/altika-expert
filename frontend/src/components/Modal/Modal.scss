@@ -1,11 +1,17 @@
 .modal {
   width: min(100% - 32px, 520px);
   padding: 0;
-
   border: 0;
   border-radius: var(--radius-lg);
-
   background: transparent;
+
+  &[open]::backdrop {
+    animation: modal-backdrop-in 180ms ease-out;
+  }
+
+  &[open] .modal__content {
+    animation: modal-content-in 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
   &::backdrop {
     background: rgb(12 24 34 / 68%);
@@ -66,5 +72,33 @@
       padding-right: 40px;
       font-size: 24px;
     }
+  }
+}
+
+@keyframes modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-content-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97)
+  }
+  to {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal[open],
+  .modal[open]::backdrop,
+  .modal[open] .modal__content {
+    animation: none;
   }
 }

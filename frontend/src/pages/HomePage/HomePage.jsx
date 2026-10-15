@@ -28,6 +28,7 @@ import ApplicationSection from '../../sections/ApplicationSection/ApplicationSec
 import Contacts from '../../sections/Contacts/Contacts';
 
 import PageSeo from '../../components/PageSeo/PageSeo';
+import PageLoader from '../../components/PageLoader/PageLoader';
 
 import ApplicationModal from '../../components/ApplicationModal/ApplicationModal';
 
@@ -102,7 +103,7 @@ function HomePage() {
 
   if (error) return <p>{error}</p>
 
-  if (!company) return <p>Загрузка данных...</p>
+  if (!company) return <PageLoader />
 
 
   const openApplicationModal = ({ applicationType=APPLICATION_TYPES.GENERAL, subject='' }={}) => {

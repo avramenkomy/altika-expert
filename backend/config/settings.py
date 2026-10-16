@@ -139,6 +139,7 @@ DATABASES = {
         'PORT': '' if DB_SOCKET else os.getenv('DB_PORT', '3306'),
         'OPTIONS': {
             'charset': 'utf8mb4',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             **({'unix_socket': DB_SOCKET} if DB_SOCKET else {}),
         },
     }

@@ -10,6 +10,7 @@ from .throttles import AplllicationBurstThrottle, ApplicationSustainedThrottle
 class ApplicationCreateView(generics.CreateAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
+    authentication_classes = []
     permission_classes = (AllowAny, )
     throttle_classes = (
         AplllicationBurstThrottle,

@@ -155,13 +155,24 @@
       left: 0;
       right: 0;
 
-      display: none;
+      display: grid;
 
       margin-left: 0;
       padding: 24px;
 
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transform: translateY(-10px);
+
       background: var(--color-primary-dark);
       box-shadow: var(--shadow-md);
+
+      transition:
+        opacity 220ms ease,
+        transform 220ms ease,
+        visibility 0s linear 220ms;
 
       a {
         padding: 8px 0;
@@ -169,7 +180,16 @@
       }
 
       &--open {
-        display: grid;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+
+        transform: translateY(0);
+
+        transition:
+          opacity 220ms ease,
+          transform 220ms ease,
+          visibility 0s;
       }
     }
   }
@@ -179,5 +199,11 @@
   .header__logo-image {
     width: 52px;
     height: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__nav {
+    transition: none;
   }
 }

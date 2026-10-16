@@ -34,3 +34,31 @@ export const PROCESS_TYPES = {
   EXPERTISE: 'expertise',
   VALUATION: 'valuation',
 }
+
+// Навигация по сайту
+export const NAV_ITEMS = [
+  {
+    label: 'О компании',
+    to: '/#about',
+  },
+  {
+    label: 'Виды экспертиз',
+    to: '/#expertises',
+  },
+  {
+    label: 'Оценка',
+    to: '/#valuation',
+  },
+  {
+    label: 'Услуги',
+    to: '/#services',
+  },
+  {
+    label: 'Эксперты',
+    to: '/#experts',
+  },
+  {
+    label: 'Контакты',
+    to: '/#contacts',
+  },
+];

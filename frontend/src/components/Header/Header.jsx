@@ -10,6 +10,8 @@ import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import CallbackForm from '../CallbackForm/CallbackForm';
 
+import { NAV_ITEMS } from '../../utils/constants';
+
 import './Header.scss';
 
 import logoWhite from '../../assets/images/logo_white.svg';
@@ -39,12 +41,16 @@ function Header({ company }) {
             className={`header__nav ${menuOpen ? "header__nav--open" : ""}`}
             aria-label="Основная навигация"
           >
-            <a href="#about" onClick={closeMenu}>О компании</a>
-            <a href="#expertises" onClick={closeMenu}>Виды экспертиз</a>
-            <a href="#valuation" onClick={closeMenu}>Оценка</a>
-            <a href="#services" onClick={closeMenu}>Услуги</a>
-            <a href="#experts" onClick={closeMenu}>Эксперты</a>
-            <a href="#contacts" onClick={closeMenu}>Контакты</a>
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.to}
+                className="header__nav-link"
+                to={item.to}
+                onClick={closeMenu}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="header__actions">

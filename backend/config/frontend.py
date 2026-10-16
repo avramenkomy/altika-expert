@@ -10,6 +10,8 @@ from company.seo import (
   resolve_seo,
 )
 
+from company.structured_data import resolve_structured_data
+
 
 def frontend_view(request):
     seo = resolve_seo(request.path)
@@ -25,6 +27,19 @@ def frontend_view(request):
 
         status = 404
 
+    structured_data = resolve_structured_data(
+        request.path
+    )
+
+    structured_data_json = ''
+
+    if structured_data:
+        structured_data_json = json.dumps(
+            structured_data,
+            ensure_ascii=False,
+            separators=(',', ':'),
+        ).replace('</', '<\\/')
+
     site_url = settings.SITE_URL.rstrip('/')
     path = request.path.rstrip('/') or '/'
 
@@ -37,7 +52,12 @@ def frontend_view(request):
     image_url = ''
 
     if seo.image:
-        image_url = request.build_absolute_uri( seo.image, )
+        image_path = str(seo.image)
+
+        if image_path.startswith(('http://', 'https://')):
+            image_url = image_path
+        else:
+            image_url = f'{site_url}{image_path}'
 
     vite_assets = None
 
@@ -48,6 +68,7 @@ def frontend_view(request):
         'seo': seo,
         'canonical_url': canonical_url,
         'image_url': image_url,
+        'structured_data_json': structured_data_json,
         'vite_dev_server_url': (
             settings.VITE_DEV_SERVER_URL
             if settings.DEBUG

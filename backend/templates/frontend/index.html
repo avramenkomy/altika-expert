@@ -1,13 +1,6 @@
 {% load static %}
 <!doctype html>
 <html lang="ru">
-
-  {% if vite_assets %}
-    {% for css_file in vite_assets.css %}
-      <Link rel="stylesheet" href="{% static css_file %}">
-    {% endfor %}
-  {% endif %}
-
   <head>
     <meta charset="UTF-8">
     <meta
@@ -46,13 +39,25 @@
     {% if image_url %}
       <meta property="og:image" content="{{ image_url }}">
     {% endif %}
+
+    {% if structured_data_json %}
+      <script type="application/ld+json">
+        {{ structured_data_json|safe }}
+      </script>
+    {% endif %}
+
+    {% if vite_assets %}
+      {% for css_file in vite_assets.css %}
+        <Link rel="stylesheet" href="{% static css_file %}">
+      {% endfor %}
+    {% endif %}
   </head>
 
   <body>
     <div id="root"></div>
 
     {% if vite_dev_server_url %}
-    
+
       <script type="module">
         import RefreshRuntime from '{{ vite_dev_server_url }}/@react-refresh'
 

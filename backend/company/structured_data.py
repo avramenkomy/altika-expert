@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.utils.html import strip_tags
 
-from company.models import Expertise, ValuationType
+from company.models import Expertise, ValuationType, Company
 from experts.models import Expert
 from services.models import Service
 
@@ -35,17 +35,76 @@ def _absolute_image_url(image):
 def _organization_schema():
     site_url = _site_url()
 
-    return {
+    company = Company.objects.first()
+
+    schema = {
         '@type': 'Organization',
         '@id': f'{site_url}/#organization',
         'name': 'Экспертное бюро «Альтика»',
+        'legalName': (company.name if company else 'Экспертное бюро «Альтика»'),
         'url': site_url,
-        'logo': f'{site_url}/static/frontend/favicon.svg',
+        'logo': f'{site_url}/static/frontend/logo.svg',
         'areaServed': {
             '@type': 'Country',
             'name': 'Россия',
         }
     }
+
+    if not company: return schema
+
+    if company.short_name:
+        schema['alternateName'] = company.short_name
+
+    if company.description:
+        schema['description'] = company.description
+
+    if company.phone:
+        schema['telephone'] = company.phone
+
+    if company.email:
+        schema['email'] = company.email
+
+    if company.address:
+        schema['address'] = {
+            '@type': 'PostalAddress',
+            'streetAddress': company.address,
+            'addressCountry': 'RU',
+        }
+
+    if company.inn:
+        schema['taxID'] = company.inn
+
+    identifiers = []
+
+    if company.ogrn:
+        identifiers.append({
+            '@type': 'PropertyValue',
+            'propertyID': 'ОГРН',
+            'value': company.ogrn
+        })
+
+    if company.kpp:
+        identifiers.append({
+            '@type': 'PropertyValue',
+            'propertyID': 'КПП',
+            'value': company.kpp
+        })
+
+    if identifiers:
+        schema['identifier'] = identifiers
+
+    if ( company.latitude is not None and company.longitude is not None ):
+        schema['location'] = {
+            '@type': 'Place',
+            'address': company.address or '',
+            'geo': {
+                '@type': 'GeoCoordinates',
+                'latitude': float(company.latitude),
+                'longitude': float(company.longitude),
+            },
+        }
+
+    return schema
 
 
 def _service_schema(item, url):

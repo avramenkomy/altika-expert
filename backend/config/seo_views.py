@@ -5,6 +5,12 @@ from django.http import HttpResponse
 def robots_txt(request):
     site_url = settings.SITE_URL.rstrip('/')
 
+    if settings.PREVIEW_MODE:
+        return HttpResponse(
+            'User-agent: *\nDisallow: /\n',
+            content_type='text/plain',
+        )
+
     lines = [
         'User-agent: *',
         'Allow: /',

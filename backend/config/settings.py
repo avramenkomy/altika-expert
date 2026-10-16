@@ -31,14 +31,22 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
+PREVIEW_MODE = (
+    os.getenv('PREVIEW_MODE', 'False').lower() == 'true'
+)
+
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    'preview-test.site',
+    'www.preview-test.site',
     'altika-expert.ru',
     'www.altika-expert.ru',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://preview-test.site',
+    'https://www.preview-test.site',
     'https://altika-expert.ru',
     'https://www.altika-expert.ru',
 ]

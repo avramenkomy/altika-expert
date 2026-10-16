@@ -22,7 +22,7 @@
 
     <meta
       name="robots"
-      content="{% if seo.noindex %}noindex, nofollow{% else %}index, follow{% endif %}"
+      content="{% if preview_mode or seo.noindex %}noindex, nofollow{% else %}index, follow{% endif %}"
     >
 
     <link rel="canonical" href="{{ canonical_url }}">

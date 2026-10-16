@@ -75,6 +75,7 @@ def frontend_view(request):
             else ''
         ),
         'vite_assets': vite_assets,
+        'preview_mode': settings.PREVIEW_MODE,
     }
 
     return render(

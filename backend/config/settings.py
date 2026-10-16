@@ -38,6 +38,21 @@ ALLOWED_HOSTS = [
     'www.altika-expert.ru',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://altika-expert.ru',
+    'https://www.altika-expert.ru',
+]
+
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+
+    # SECURE_SSL_REDIRECT = True
+
 
 # Application definition
 
@@ -70,10 +85,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-]
+CORS_ALLOWED_ORIGINS = []
+
+if DEBUG:
+    CORS_ALLOWED_ORIGINS = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+    ]
 
 ROOT_URLCONF = 'config.urls'
 

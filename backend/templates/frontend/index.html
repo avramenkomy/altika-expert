@@ -17,12 +17,13 @@
     <title>{{ seo.title }}</title>
 
     {% if seo.description %}
-    <meta name="description" content="{{ seo.description }}">
+      <meta name="description" content="{{ seo.description }}">
     {% endif %}
 
     <meta
       name="robots"
       content="{% if preview_mode or seo.noindex %}noindex, nofollow{% else %}index, follow{% endif %}"
+      {% if preview_mode %}data-preview-mode="true"{% endif %}
     >
 
     <link rel="canonical" href="{{ canonical_url }}">

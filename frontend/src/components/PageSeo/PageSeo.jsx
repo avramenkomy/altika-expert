@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
 
-const SITE_URL = import.meta.env.VITE_SITE_URL;
-
 
 function PageSeo({ title, description, path='/', image, noIndex=false }) {
   useEffect(() => {
@@ -39,7 +37,8 @@ function PageSeo({ title, description, path='/', image, noIndex=false }) {
       )
     }
 
-    const canonicalUrl = new URL(path, SITE_URL).toString();
+    const siteUrl = window.location.origin;
+    const canonicalUrl = new URL(path, siteUrl).toString();
 
     let canonical = document.head.querySelector('link[rel="canonical"]');
 
@@ -73,17 +72,27 @@ function PageSeo({ title, description, path='/', image, noIndex=false }) {
       'Экспертное бюро «Альтика»',
     );
 
+    const robotsMeta = document.head.querySelector(
+      'meta[name="robots"]',
+    );
+
+    const previewMode = robotsMeta?.dataset.previewMode === 'true';
+
     setMeta(
       'meta[name="robots"]',
       'name',
       'robots',
-      noIndex
+      previewMode || noIndex
         ? 'noindex, nofollow'
         : 'index, follow',
     );
 
+    const ogImage = document.head.querySelector(
+      'meta[property="og:image"]'
+    );
+
     if (image) {
-      const imageUrl = new URL(image, SITE_URL).toString();
+      const imageUrl = new URL(image, siteUrl).toString();
 
       setMeta(
         'meta[property="og:image"]',
@@ -91,6 +100,8 @@ function PageSeo({ title, description, path='/', image, noIndex=false }) {
         'og:image',
         imageUrl,
       );
+    } else if (ogImage) {
+      ogImage.remove();
     }
   }, [title, description, path, image, noIndex]);
 

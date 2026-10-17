@@ -194,27 +194,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-MAILER_BACKEND = os.getenv(
+EMAIL_BACKEND = os.getenv(
     'MAILER_BACKEND',
-    'django.core.mail.backends.console.EmailBackend',
+    'django.core.mail.backends.smtp.EmailBackend',
 )
 
-MAILERS = {
-    'default': {
-        'BACKEND': MAILER_BACKEND,
-    }
-}
+EMAIL_HOST = os.getenv('SMTP_HOST', '')
+EMAIL_PORT = int(os.getenv('SMTP_PORT', '587'))
+EMAIL_HOST_USER = os.getenv('SMTP_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASSWORD', '')
 
-if MAILER_BACKEND == 'django.core.mail.backends.smtp.EmailBackend':
-    MAILERS['default']['OPTIONS'] = {
-        'host': os.getenv('SMTP_HOST', ''),
-        'port': int(os.getenv('SMTP_PORT', '587')),
-        'username': os.getenv('SMTP_USER', ''),
-        'password': os.getenv('SMTP_PASSWORD', ''),
-        'use_tls': os.getenv('SMTP_USE_TLS', 'True').lower() == 'true',
-        'use_ssl': os.getenv('SMTP_USE_SSL', 'False').lower() == 'true',
-        'timeout': 10,
-    }
+EMAIL_USE_TLS = (
+    os.getenv('SMTP_USE_TLS', 'True').lower() == 'true'
+)
+
+EMAIL_USE_SSL = (
+    os.getenv('SMTP_USE_SSL', 'False').lower() == 'true'
+)
+
+EMAIL_TIMEOUT = 10
 
 DEFAULT_FROM_EMAIL = os.getenv(
     'DEFAULT_FROM_EMAIL',

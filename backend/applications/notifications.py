@@ -41,7 +41,6 @@ def send_email_notification(application):
             message=build_application_message(application),
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[recipient, ],
-            using='default'
         )
     except Exception:
         logger.exception(

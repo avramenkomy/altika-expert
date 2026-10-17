@@ -7,6 +7,8 @@ import {
 
 import Container from '../Container/Container';
 
+import { NAV_ITEMS } from '../../utils/constants';
+
 import './Footer.scss';
 
 import logoWhite from '../../assets/images/logo_white.svg';
@@ -71,12 +73,12 @@ function Footer({ company }) {
               Навигация
             </span>
 
-            <a href="#about">О компании</a>
-            <a href="#expertises">Виды экспертиз</a>
-            <a href="#valuation">Оценка</a>
-            <a href="#services">Услуги</a>
-            <a href="#experts">Эксперты</a>
-            <a href="#contacts">Контакты</a>
+            {NAV_ITEMS.map(item => (
+              <Link
+                key={item.to}
+                to={item.to}
+              >{item.label}</Link>
+            ))}
           </nav>
 
           <div className="footer__contacts">
